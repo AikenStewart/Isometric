@@ -135,9 +135,6 @@
     <Image Include="Assets\cursor.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="world.csv" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Source\ClassesAndFunctions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

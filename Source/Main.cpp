@@ -19,7 +19,7 @@ int main() {
     SetTargetFPS(60);
 
     Game game;
-    game.world.Read();
+    game.world.MakeEmptyWorldData();
 
     while(WindowShouldClose() == false) {
         BeginDrawing();
@@ -33,17 +33,17 @@ int main() {
         }
 
         if(game.playing) {
-            if (EventTriggered(0.2))
-                game.ConwayUpdate();
+            game.ConwayUpdate();
         }
         else
             game.Update();
 
+        cout << game.world.world_data[0].size() << endl;
+        game.CellInfo();
         ClearBackground(BLACK);
         EndDrawing();
     }
 
-    game.world.Save();
     CloseWindow();
     return 0;
 }

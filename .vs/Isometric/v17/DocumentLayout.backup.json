@@ -7,10 +7,6 @@
       "RelativeMoniker": "D:0:0:{F7330C4F-D120-4ACE-95BE-AF7B00EBA513}|Isometric.vcxproj|solutionrelative:Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7330C4F-D120-4ACE-95BE-AF7B00EBA513}|Isometric.vcxproj|H:\\AikenStuff\\Programming\\Isometric\\world.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{F7330C4F-D120-4ACE-95BE-AF7B00EBA513}|Isometric.vcxproj|solutionrelative:world.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F7330C4F-D120-4ACE-95BE-AF7B00EBA513}|Isometric.vcxproj|H:\\AikenStuff\\Programming\\Isometric\\Source\\ClassesAndFunctions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F7330C4F-D120-4ACE-95BE-AF7B00EBA513}|Isometric.vcxproj|solutionrelative:Source\\ClassesAndFunctions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -36,7 +32,7 @@
               "RelativeDocumentMoniker": "Source\\Main.cpp",
               "ToolTip": "H:\\AikenStuff\\Programming\\Isometric\\Source\\Main.cpp",
               "RelativeToolTip": "Source\\Main.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACQAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-25T11:24:07.628Z",
               "IsPinned": true,
@@ -44,13 +40,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ClassesAndFunctions.cpp",
               "DocumentMoniker": "H:\\AikenStuff\\Programming\\Isometric\\Source\\ClassesAndFunctions.cpp",
               "RelativeDocumentMoniker": "Source\\ClassesAndFunctions.cpp",
               "ToolTip": "H:\\AikenStuff\\Programming\\Isometric\\Source\\ClassesAndFunctions.cpp",
               "RelativeToolTip": "Source\\ClassesAndFunctions.cpp",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAADYBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-25T12:02:12.626Z",
               "IsPinned": true,
@@ -58,29 +54,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ClassesAndFunctions.hpp",
               "DocumentMoniker": "H:\\AikenStuff\\Programming\\Isometric\\Source\\ClassesAndFunctions.hpp",
               "RelativeDocumentMoniker": "Source\\ClassesAndFunctions.hpp",
               "ToolTip": "H:\\AikenStuff\\Programming\\Isometric\\Source\\ClassesAndFunctions.hpp",
               "RelativeToolTip": "Source\\ClassesAndFunctions.hpp",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAD0AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADQAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-01-25T13:21:32.092Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "world.csv",
-              "DocumentMoniker": "H:\\AikenStuff\\Programming\\Isometric\\world.csv",
-              "RelativeDocumentMoniker": "world.csv",
-              "ToolTip": "H:\\AikenStuff\\Programming\\Isometric\\world.csv",
-              "RelativeToolTip": "world.csv",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
-              "WhenOpened": "2025-01-26T12:57:54.638Z",
               "EditorCaption": ""
             }
           ]

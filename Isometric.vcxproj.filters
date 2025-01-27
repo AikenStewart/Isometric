@@ -31,9 +31,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="world.csv" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Source\ClassesAndFunctions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

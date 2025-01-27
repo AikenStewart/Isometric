@@ -11,37 +11,30 @@ using namespace std;
 
 bool EventTriggered(double interval);
 
-Vector2 IsoToScreen(Vector2 iso);
+pair <int, int> IsoToScreen(pair<int, int> iso);
 
-Vector2 ScreenToIso(Vector2 screen);
+pair<int, int> ScreenToIso(pair<int, int> screen);
 
 class World {
 public:
-    vector<Vector2> world_data;
+    vector<vector<int>> world_data;
     Image block = LoadImage("Assets/box.png");
     Texture2D block_texture = LoadTextureFromImage(block);
     Image cursor = LoadImage("Assets/cursor.png");
     Texture2D cursor_texture = LoadTextureFromImage(cursor);
+    Image invalid_cursor = LoadImage("Assets/invalid_cursor.png");
+    Texture2D invalid_cursor_texture = LoadTextureFromImage(invalid_cursor);
 
-    void Delete(Vector2 item);
+    void MakeEmptyWorldData();
 
     void Clear();
 
-    bool Search(Vector2 search_item);
-
-    void Clean();
-
-    void Sort();
-
     void Edit();
-
-    void Read();
 
     void Build();
 
     void Cursor();
 
-    void Save();
 
     ~World();
 };
@@ -49,13 +42,15 @@ public:
 class Game {
     public:
         World world;
-        bool playing;
+        bool playing = false;
 
-        int NumberAliveNeighbours(Vector2 block);
+        void CellInfo();
+
+        int NumberAliveNeighbours(pair<int, int> block);
         
-        bool WillBeAlive(Vector2 block);
+        int WillBeAlive(pair<int, int> block);
 
-        vector<Vector2> MakeNextBoard(vector<Vector2> old_board);
+        void MakeNextBoard();
 
         void Update();
 
