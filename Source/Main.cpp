@@ -39,9 +39,11 @@ int main() {
         else
             game.Update();
 
-        cout << GetFPS() << endl;
+        string pos_string = to_string(GetFPS());
+        char* pos_char = (char*)pos_string.c_str();
+        DrawText(pos_char, 5, 25, 30, WHITE);
 
-        game.CellInfo();
+        game.world.ChangeMode();
         ClearBackground(BLACK);
         EndDrawing();
     }

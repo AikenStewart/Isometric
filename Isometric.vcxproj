@@ -133,6 +133,10 @@
   <ItemGroup>
     <Image Include="Assets\box.png" />
     <Image Include="Assets\cursor.png" />
+    <Image Include="Assets\invalid_cursor.png" />
+    <Image Include="Assets\smaller_box.png" />
+    <Image Include="Assets\smallest_box.png" />
+    <Image Include="Assets\small_box.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ClassesAndFunctions.hpp" />

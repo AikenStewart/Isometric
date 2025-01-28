@@ -4,19 +4,21 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <random>
 #include <raylib.h>
 #include <raymath.h>
+
 
 #include "ClassesAndFunctions.hpp"
 
 using namespace std;
 
-int blocksize = 32;
+int blocksize = 8;
 float face_x = blocksize / 2;
 float face_y = blocksize / 4;
 
 int centre_offset = 1920 / 2;
-int downwards_offset = (blocksize - (face_y * 0.5)) - (blocksize * 85);
+int downwards_offset = -500;
 
 double last_update_time = 0;
 bool EventTriggered(double interval) {
@@ -52,6 +54,31 @@ pair<int, int> ScreenToIso(pair<int, int> screen) {
     return iso;
 }
 
+void World::ChangeMode() {
+    if (IsKeyPressed(KEY_ONE)) {
+        blocksize = 32;
+        face_x = blocksize / 2;
+        face_y = blocksize / 4;
+        downwards_offset = -7500;
+        current_texture = large_block_texture;
+    }
+    if (IsKeyPressed(KEY_TWO)) {
+        blocksize = 8;
+        face_x = blocksize / 2;
+        face_y = blocksize / 4;
+        downwards_offset = -1500;
+        current_texture = block_texture;
+    }
+    if (IsKeyPressed(KEY_THREE)) {
+        blocksize = 4;
+        face_x = blocksize / 2;
+        face_y = blocksize / 4;
+        downwards_offset = -500;
+        current_texture = small_block_texture;
+    }
+
+}
+
 void World::MakeEmptyWorldData() {
     vector<int> current_row;
     for (int i = 0; i < gridsize + 1; i++) {
@@ -73,7 +100,7 @@ void World::Edit() {
     bool changed = false;
     Vector2 screen_pos = GetMousePosition();
     pair<int, int> mouse_pos = ScreenToIso(pair<int, int>(screen_pos.x, screen_pos.y));
-    if (mouse_pos.first < world_data.size() && mouse_pos.second < world_data.size()) {
+    if (mouse_pos.first < gridsize + 1 && mouse_pos.second < gridsize + 1) {
 
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
             int index = mouse_pos.second * gridsize + mouse_pos.first;
@@ -84,8 +111,16 @@ void World::Edit() {
             int index = mouse_pos.second * gridsize + mouse_pos.first;
             world_data[index] = 0;
         }
+
+        if (IsMouseButtonDown(MOUSE_BUTTON_MIDDLE)) {
+            int index = mouse_pos.second * gridsize + mouse_pos.first;
+            for (int i = 0; i < 10; i++) {
+                world_data[index+i] = 1;
+            }
+        }
     }
 }
+
 
 
 void World::Build() {
@@ -93,7 +128,7 @@ void World::Build() {
         for (int block = 0; block < gridsize + 1; block++) {
             if(world_data[row * gridsize + block] == 1) {
                 pair<int, int> screen_coords = IsoToScreen(pair<int, int>(block, row));
-                DrawTexture(block_texture, screen_coords.first, screen_coords.second, WHITE);
+                DrawTexture(current_texture, screen_coords.first, screen_coords.second, WHITE);
             }
         }
     }
@@ -108,26 +143,21 @@ void World::Cursor() {
     else {
         DrawTexture(cursor_texture, IsoToScreen(mouse_pos).first, IsoToScreen(mouse_pos).second, WHITE);
     }
-    string pos_string = to_string(static_cast<int>(mouse_pos.first)) + "," + to_string(static_cast<int>(mouse_pos.second));
-    char* pos_char = (char*)pos_string.c_str();
-    DrawText(pos_char, 5, 25, 30, WHITE);
 }
 
 World::~World() {
+    UnloadImage(large_block);
+    UnloadTexture(large_block_texture);
     UnloadImage(block);
     UnloadTexture(block_texture);
+    UnloadImage(small_block);
+    UnloadTexture(small_block_texture);
+    UnloadImage(smaller_block);
+    UnloadTexture(smaller_block_texture);
     UnloadImage(cursor);
     UnloadTexture(cursor_texture);
     UnloadImage(invalid_cursor);
     UnloadTexture(invalid_cursor_texture);
-}
-
-void Game::CellInfo() {
-    Vector2 screen_pos = GetMousePosition();
-    pair<int, int> mouse_pos = ScreenToIso(pair<int, int>(screen_pos.x, screen_pos.y));
-    string pos_string = to_string(NumberAliveNeighbours(mouse_pos)) + " " + to_string(WillBeAlive(mouse_pos));
-    char* pos_char = (char*)pos_string.c_str();
-    DrawText(pos_char, 1850, 25, 30, WHITE);
 }
 
 int Game::NumberAliveNeighbours(pair<int, int> block) {

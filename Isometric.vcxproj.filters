@@ -29,6 +29,18 @@
     <Image Include="Assets\cursor.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\invalid_cursor.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\smallest_box.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\smaller_box.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\small_box.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ClassesAndFunctions.hpp">
