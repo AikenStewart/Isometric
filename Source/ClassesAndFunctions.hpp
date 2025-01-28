@@ -17,7 +17,8 @@ pair<int, int> ScreenToIso(pair<int, int> screen);
 
 class World {
 public:
-    vector<vector<int>> world_data;
+    int gridsize = 5 * 64;
+    vector<int> world_data;
     Image block = LoadImage("Assets/box.png");
     Texture2D block_texture = LoadTextureFromImage(block);
     Image cursor = LoadImage("Assets/cursor.png");

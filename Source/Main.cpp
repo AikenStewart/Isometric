@@ -12,6 +12,7 @@ using namespace std;
 
 int window_x = 1920;
 int window_y = 1080;
+int frame_count = 0;
 
 int main() {
     cout << "Starting the game" << endl;
@@ -38,7 +39,8 @@ int main() {
         else
             game.Update();
 
-        cout << game.world.world_data[0].size() << endl;
+        cout << GetFPS() << endl;
+
         game.CellInfo();
         ClearBackground(BLACK);
         EndDrawing();

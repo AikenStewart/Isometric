@@ -16,7 +16,7 @@ float face_x = blocksize / 2;
 float face_y = blocksize / 4;
 
 int centre_offset = 1920 / 2;
-int downwards_offset = (blocksize - (face_y*0.5)) - (blocksize * 85);
+int downwards_offset = (blocksize - (face_y * 0.5)) - (blocksize * 85);
 
 double last_update_time = 0;
 bool EventTriggered(double interval) {
@@ -54,12 +54,10 @@ pair<int, int> ScreenToIso(pair<int, int> screen) {
 
 void World::MakeEmptyWorldData() {
     vector<int> current_row;
-    for (int i = 0; i < 301; i++) {
-        current_row = {};
-        for (int i = 0; i < 301; i++) {
-            current_row.push_back(0);
+    for (int i = 0; i < gridsize + 1; i++) {
+        for (int i = 0; i < gridsize + 1; i++) {
+            world_data.push_back(0);
         }
-        world_data.push_back(current_row);
     }
 }
 
@@ -75,23 +73,25 @@ void World::Edit() {
     bool changed = false;
     Vector2 screen_pos = GetMousePosition();
     pair<int, int> mouse_pos = ScreenToIso(pair<int, int>(screen_pos.x, screen_pos.y));
-    if (mouse_pos.first < world_data[0].size() && mouse_pos.second < world_data.size()) {
+    if (mouse_pos.first < world_data.size() && mouse_pos.second < world_data.size()) {
 
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-            world_data[mouse_pos.second][mouse_pos.first] = 1;
+            int index = mouse_pos.second * gridsize + mouse_pos.first;
+            world_data[index] = 1;
         }
 
         if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
-            world_data[mouse_pos.second][mouse_pos.first] = 0;
+            int index = mouse_pos.second * gridsize + mouse_pos.first;
+            world_data[index] = 0;
         }
     }
 }
 
 
 void World::Build() {
-    for (int row = 0; row < world_data.size(); row++) {
-        for (int block = 0; block < world_data[row].size(); block++) {
-            if(world_data[row][block] == 1) {
+    for (int row = 0; row < gridsize + 1; row++) {
+        for (int block = 0; block < gridsize + 1; block++) {
+            if(world_data[row * gridsize + block] == 1) {
                 pair<int, int> screen_coords = IsoToScreen(pair<int, int>(block, row));
                 DrawTexture(block_texture, screen_coords.first, screen_coords.second, WHITE);
             }
@@ -102,7 +102,7 @@ void World::Build() {
 void World::Cursor() {
     Vector2 screen_pos = GetMousePosition();
     pair<int, int> mouse_pos = ScreenToIso(pair<int, int>(screen_pos.x, screen_pos.y));
-    if(mouse_pos.first >= world_data[0].size() || mouse_pos.second >= world_data.size()) {
+    if(mouse_pos.first >= gridsize + 1 || mouse_pos.second >= gridsize + 1) {
         DrawTexture(invalid_cursor_texture, IsoToScreen(mouse_pos).first, IsoToScreen(mouse_pos).second, WHITE);
     }
     else {
@@ -136,8 +136,8 @@ int Game::NumberAliveNeighbours(pair<int, int> block) {
     for (int current_y = block.second - 1; current_y < block.second + 2; current_y++) {
         for (int current_x = block.first - 1; current_x < block.first + 2; current_x++) {
             //if surrounding block is alive and within bounds, add one to alive neighbours
-            if (current_y > -1 && current_x > -1 && current_x < world.world_data[0].size() && current_y < world.world_data.size() && pair<int, int>(current_x, current_y) != block)
-                if(world.world_data[current_y][current_x] == 1)
+            if (current_y > -1 && current_x > -1 && current_x < world.gridsize + 1 && current_y < world.gridsize + 1 && pair<int, int>(current_x, current_y) != block)
+                if(world.world_data[current_y * world.gridsize + current_x] == 1)
                     alive_neighbours += 1;
         }
     }
@@ -146,24 +146,45 @@ int Game::NumberAliveNeighbours(pair<int, int> block) {
 
 int Game::WillBeAlive(pair<int, int> block) {
     int alive_neighbours = NumberAliveNeighbours(block);
+    int index = block.second * world.gridsize + block.first;
 
-    if(alive_neighbours < 2)
-        return 0;
-    if(alive_neighbours == 2 && world.world_data[block.second][block.first] == 1)
-        return 1;
-    if(alive_neighbours == 2 && world.world_data[block.second][block.first] == 0)
-        return 0;
-    if(alive_neighbours == 3)
-        return 1;
-    if(alive_neighbours > 3)
-        return 0;
+    switch (alive_neighbours) {
+        case 0:
+            return 0;
+            break;
+        case 1:
+            return 0;
+            break;
+        case 2:
+            return world.world_data[index];
+            break;
+        case 3:
+            return 1;
+            break;
+        case 4:
+            return 0;
+            break;
+        case 5:
+            return 0;
+            break;
+        case 6:
+            return 0;
+            break;
+        case 7:
+            return 0;
+            break;
+        case 8:
+            return 0;
+            break;
+
+    }
 }
 
 void Game::MakeNextBoard() {
-    vector<vector<int>> new_board = world.world_data;
-    for(int row = 0; row < new_board.size(); row++) {
-        for(int block = 0; block < new_board[row].size(); block++) {
-            new_board[row][block] = WillBeAlive(pair<int, int>(block, row));
+    vector<int> new_board = world.world_data;
+    for(int row = 0; row < world.gridsize + 1; row++) {
+        for(int block = 0; block < world.gridsize + 1; block++) {
+            new_board[row * world.gridsize + block] = WillBeAlive(pair<int, int>(block, row));
         }
     }
     world.world_data = new_board;

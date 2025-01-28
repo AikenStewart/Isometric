@@ -15,14 +15,14 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.3443
   (compiling source file 'Source/ClassesAndFunctions.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,16):
       the template instantiation context (the oldest one first) is
-          H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(77,58):
+          H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(75,58):
           see reference to function template instantiation 'std::pair<int,int>::pair<float&,float&,0>(_Other1,_Other2) noexcept' being compiled
           with
           [
               _Other1=float &,
               _Other2=float &
           ]
-              H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(77,32):
+              H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(75,32):
               see the first reference to 'std::pair<int,int>::pair' in 'World::Edit'
   
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,54): warning C4244: 'initializing': conversion from 'float' to '_Ty2', possible loss of data
@@ -32,7 +32,9 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.3443
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,54): warning C4244:         ]
   (compiling source file 'Source/ClassesAndFunctions.cpp')
   
-H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(160,1): warning C4715: 'Game::WillBeAlive': not all control paths return a value
+  Main.cpp
+  Generating Code...
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(181,1): warning C4715: 'Game::WillBeAlive': not all control paths return a value
   Isometric.vcxproj -> H:\AikenStuff\Programming\Isometric\x64\Debug\Isometric.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
