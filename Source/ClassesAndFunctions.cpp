@@ -194,8 +194,8 @@ void Game::MakeNextBoard() {
     for(int row = 0; row < world.gridsize + 1; row++) {
         for(int block = 0; block < world.gridsize + 1; block++) {
             int index = row * world.gridsize + block;
-            int alive = new_board[index].second;
-            if (alive > 0 || new_board[index].first > 0) {
+            int alive = world.world_data[index].second;
+            if (alive != 0 || world.world_data[index].first > 1) {
                 pair<int, int> current_block = { block, row };
                 if (WillBeAlive(current_block)) {
                     if (!alive) {

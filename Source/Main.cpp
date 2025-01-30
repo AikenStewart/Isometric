@@ -38,7 +38,8 @@ int main() {
         }
 
         if(game.playing) {
-            game.ConwayUpdate();
+            if (EventTriggered(0))
+                game.ConwayUpdate();
         }
         else
             game.Update();
