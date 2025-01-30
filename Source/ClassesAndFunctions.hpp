@@ -4,6 +4,10 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <array>
+#include <cstdint>
+#include <utility>
+#include <random>
 #include <raylib.h>
 #include <raymath.h>
 
@@ -18,7 +22,8 @@ pair<int, int> ScreenToIso(pair<int, int> screen);
 class World {
 public:
     int gridsize = 16 * 64;
-    vector<int> world_data;
+    vector<pair<int, int>> world_data;
+    array<array<int, 9>, 2> lookup_table = { array<int, 9>{0, 0, 0, 1, 0, 0, 0 ,0 ,0}, array<int, 9>{0, 0, 1, 1, 0, 0, 0 ,0 ,0} };
     Image large_block = LoadImage("Assets/box.png");
     Image block = LoadImage("Assets/small_box.png");
     Image small_block = LoadImage("Assets/smaller_box.png");
@@ -37,7 +42,11 @@ public:
 
     void MakeEmptyWorldData();
 
-    void Clear();
+    void Place(pair<int, int> block);
+
+    void Delete(pair<int, int> block);
+
+    bool Check(pair<int, int> block);
 
     void Edit();
 
@@ -53,8 +62,6 @@ class Game {
     public:
         World world;
         bool playing = false;
-
-        int NumberAliveNeighbours(pair<int, int> block);
         
         int WillBeAlive(pair<int, int> block);
 

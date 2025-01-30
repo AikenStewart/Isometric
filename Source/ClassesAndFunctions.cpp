@@ -3,6 +3,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <array>
+#include <cstdint>
 #include <utility>
 #include <random>
 #include <raylib.h>
@@ -18,7 +20,7 @@ float face_x = blocksize / 2;
 float face_y = blocksize / 4;
 
 int centre_offset = 1920 / 2;
-int downwards_offset = -500;
+int downwards_offset = 0;
 
 double last_update_time = 0;
 bool EventTriggered(double interval) {
@@ -59,21 +61,18 @@ void World::ChangeMode() {
         blocksize = 32;
         face_x = blocksize / 2;
         face_y = blocksize / 4;
-        downwards_offset = -7500;
         current_texture = large_block_texture;
     }
     if (IsKeyPressed(KEY_TWO)) {
         blocksize = 8;
         face_x = blocksize / 2;
         face_y = blocksize / 4;
-        downwards_offset = -1500;
         current_texture = block_texture;
     }
     if (IsKeyPressed(KEY_THREE)) {
         blocksize = 4;
         face_x = blocksize / 2;
         face_y = blocksize / 4;
-        downwards_offset = -500;
         current_texture = small_block_texture;
     }
 
@@ -83,16 +82,45 @@ void World::MakeEmptyWorldData() {
     vector<int> current_row;
     for (int i = 0; i < gridsize + 1; i++) {
         for (int i = 0; i < gridsize + 1; i++) {
-            world_data.push_back(0);
+            world_data.push_back(pair<int, int>(0 , 0));
         }
     }
 }
 
+void World::Place(pair<int, int> block) {
+    if (Check(block) == 0) {
+        int index = block.second * gridsize + block.first;
+        world_data[index].second = 1;
+        cout << world_data[index].first << endl;
+        //iterates through each block around block
+        for (int current_y = block.second - 1; current_y < block.second + 2; current_y++) {
+            for (int current_x = block.first - 1; current_x < block.first + 2; current_x++) {
+                //increases neighbours of each surrounding block by 1
+                if (current_y > -1 && current_x > -1 && current_x < gridsize + 1 && current_y < gridsize + 1 && pair<int, int>(current_x, current_y) != block)
+                    world_data[current_y * gridsize + current_x].first += 1;
+            }
+        }
+    }
+}
 
-void World::Clear() {
-    ofstream world_file;
-    world_file.open("world.csv", ofstream::out | ofstream::trunc);
-    world_file.close();
+void World::Delete(pair<int, int> block) {
+    if (Check(block)) {
+        int index = block.second * gridsize + block.first;
+        world_data[index].second = 0;
+        //iterates through each block around block
+        for (int current_y = block.second - 1; current_y < block.second + 2; current_y++) {
+            for (int current_x = block.first - 1; current_x < block.first + 2; current_x++) {
+                //decreases neighbours neighbour count  of each neighbour block by 1
+                if (current_y > -1 && current_x > -1 && current_x < gridsize + 1 && current_y < gridsize + 1 && pair<int, int>(current_x, current_y) != block)
+                    world_data[current_y * gridsize + current_x] .first -= 1;
+            }
+        }
+    }
+}
+
+bool World::Check(pair<int, int> block) {
+    int index = block.second * gridsize + block.first;
+    return world_data[index].second;
 }
 
 void World::Edit() {
@@ -103,30 +131,25 @@ void World::Edit() {
     if (mouse_pos.first < gridsize + 1 && mouse_pos.second < gridsize + 1) {
 
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-            int index = mouse_pos.second * gridsize + mouse_pos.first;
-            world_data[index] = 1;
+            Place(mouse_pos);
         }
 
         if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
-            int index = mouse_pos.second * gridsize + mouse_pos.first;
-            world_data[index] = 0;
+            Delete(mouse_pos);
         }
 
         if (IsMouseButtonDown(MOUSE_BUTTON_MIDDLE)) {
-            int index = mouse_pos.second * gridsize + mouse_pos.first;
             for (int i = 0; i < 10; i++) {
-                world_data[index+i] = 1;
+                Place(pair<int, int>(mouse_pos.first + i, mouse_pos.second));
             }
         }
     }
 }
 
-
-
 void World::Build() {
     for (int row = 0; row < gridsize + 1; row++) {
         for (int block = 0; block < gridsize + 1; block++) {
-            if(world_data[row * gridsize + block] == 1) {
+            if(Check(pair<int,int>(block, row))) {
                 pair<int, int> screen_coords = IsoToScreen(pair<int, int>(block, row));
                 DrawTexture(current_texture, screen_coords.first, screen_coords.second, WHITE);
             }
@@ -160,63 +183,50 @@ World::~World() {
     UnloadTexture(invalid_cursor_texture);
 }
 
-int Game::NumberAliveNeighbours(pair<int, int> block) {
-    int alive_neighbours = 0;
-    //iterates through each block around block
-    for (int current_y = block.second - 1; current_y < block.second + 2; current_y++) {
-        for (int current_x = block.first - 1; current_x < block.first + 2; current_x++) {
-            //if surrounding block is alive and within bounds, add one to alive neighbours
-            if (current_y > -1 && current_x > -1 && current_x < world.gridsize + 1 && current_y < world.gridsize + 1 && pair<int, int>(current_x, current_y) != block)
-                if(world.world_data[current_y * world.gridsize + current_x] == 1)
-                    alive_neighbours += 1;
-        }
-    }
-    return alive_neighbours;
-}
-
 int Game::WillBeAlive(pair<int, int> block) {
-    int alive_neighbours = NumberAliveNeighbours(block);
     int index = block.second * world.gridsize + block.first;
-
-    switch (alive_neighbours) {
-        case 0:
-            return 0;
-            break;
-        case 1:
-            return 0;
-            break;
-        case 2:
-            return world.world_data[index];
-            break;
-        case 3:
-            return 1;
-            break;
-        case 4:
-            return 0;
-            break;
-        case 5:
-            return 0;
-            break;
-        case 6:
-            return 0;
-            break;
-        case 7:
-            return 0;
-            break;
-        case 8:
-            return 0;
-            break;
-
-    }
+    return world.lookup_table[world.Check(block)][world.world_data[index].first];
 }
 
 void Game::MakeNextBoard() {
-    vector<int> new_board = world.world_data;
+    vector<pair<int, int>> new_board = world.world_data;
+
     for(int row = 0; row < world.gridsize + 1; row++) {
         for(int block = 0; block < world.gridsize + 1; block++) {
-            new_board[row * world.gridsize + block] = WillBeAlive(pair<int, int>(block, row));
+            int index = row * world.gridsize + block;
+            int alive = new_board[index].second;
+            if (alive > 0 || new_board[index].first > 0) {
+                pair<int, int> current_block = { block, row };
+                if (WillBeAlive(current_block)) {
+                    if (!alive) {
+                        new_board[index].second = 1;
+                        //iterates through each block around block
+                        for (int current_y = row - 1; current_y < row + 2; current_y++) {
+                            for (int current_x = block - 1; current_x < block + 2; current_x++) {
+                                //increases neighbours of each surrounding block by 1
+                                if (current_y > -1 && current_x > -1 && current_x < world.gridsize + 1 && current_y < world.gridsize + 1 && pair<int, int>(current_x, current_y) != current_block)
+                                    new_board[current_y * world.gridsize + current_x].first += 1;
+                            }
+                        }
+                    }
+                }
+                else {
+                    if (alive) {
+                        new_board[index].second = 0;
+                        //iterates through each block around block
+                        for (int current_y = row - 1; current_y < row + 2; current_y++) {
+                            for (int current_x = block - 1; current_x < block + 2; current_x++) {
+                                //decreases neighbours of each surrounding block by 1
+                                if (current_y > -1 && current_x > -1 && current_x < world.gridsize + 1 && current_y < world.gridsize + 1 && pair<int, int>(current_x, current_y) != current_block)
+                                    new_board[current_y * world.gridsize + current_x].first -= 1;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
+
     world.world_data = new_board;
 }
 

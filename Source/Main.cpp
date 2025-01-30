@@ -3,6 +3,10 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <array>
+#include <cstdint>
+#include <utility>
+#include <random>
 #include <raylib.h>
 #include <raymath.h>
 
