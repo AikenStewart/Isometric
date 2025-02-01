@@ -12,11 +12,14 @@
 
 #include "ClassesAndFunctions.hpp"
 
+
+
 using namespace std;
 
 int window_x = 1920;
-int window_y = 1080;
-int frame_count = 0;
+int window_y = 1060;
+
+
 
 int main() {
     cout << "Starting the game" << endl;
@@ -44,12 +47,13 @@ int main() {
         else
             game.Update();
 
+        game.world.ChangeSize();
+
         string pos_string = to_string(GetFPS());
         char* pos_char = (char*)pos_string.c_str();
-        DrawText(pos_char, 5, 25, 30, WHITE);
-
-        game.world.ChangeMode();
-        ClearBackground(BLACK);
+        
+        DrawText(pos_char, 1920-50, 5, 30, WHITE);
+        ClearBackground(Color{0, 0, 0});
         EndDrawing();
     }
 

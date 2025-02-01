@@ -1,4 +1,47 @@
-﻿  Main.cpp
+﻿  ClassesAndFunctions.cpp
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(35,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(36,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(37,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(38,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(48,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(49,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(51,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(52,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(54,30): warning C4244: '-=': conversion from 'float' to '_Ty1', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(54,30): warning C4244:         with
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(54,30): warning C4244:         [
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(54,30): warning C4244:             _Ty1=int
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(54,30): warning C4244:         ]
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(163,115): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(177,63): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(180,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,16): warning C4244: 'initializing': conversion from 'float' to '_Ty1', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,16): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,16): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,16): warning C4244:             _Ty1=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,16): warning C4244:         ]
+  (compiling source file 'Source/ClassesAndFunctions.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,16):
+      the template instantiation context (the oldest one first) is
+          H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(138,58):
+          see reference to function template instantiation 'std::pair<int,int>::pair<float&,float&,0>(_Other1,_Other2) noexcept' being compiled
+          with
+          [
+              _Other1=float &,
+              _Other2=float &
+          ]
+              H:\AikenStuff\Programming\Isometric\Source\ClassesAndFunctions.cpp(138,32):
+              see the first reference to 'std::pair<int,int>::pair' in 'World::Edit'
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,54): warning C4244: 'initializing': conversion from 'float' to '_Ty2', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,54): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,54): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,54): warning C4244:             _Ty2=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,54): warning C4244:         ]
+  (compiling source file 'Source/ClassesAndFunctions.cpp')
+  
+  Main.cpp
+  Generating Code...
   Isometric.vcxproj -> H:\AikenStuff\Programming\Isometric\x64\Debug\Isometric.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

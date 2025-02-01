@@ -23,22 +23,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\box.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Assets\cursor.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\invalid_cursor.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\smallest_box.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\smaller_box.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\small_box.png">
+    <Image Include="Assets\block.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
