@@ -34,6 +34,7 @@ public:
 
     Image cursor = LoadImage("Assets/cursor.png");
     Texture2D cursor_texture = LoadTextureFromImage(cursor);
+
     Image invalid_cursor = LoadImage("Assets/invalid_cursor.png");
     Texture2D invalid_cursor_texture = LoadTextureFromImage(invalid_cursor);
     double texture_size = 0.25;
@@ -61,6 +62,16 @@ class Game {
     public:
         World world;
         bool playing = false;
+
+        Image play = LoadImage("Assets/play.png");
+        Texture2D play_texture = LoadTextureFromImage(play);
+
+        Image pause = LoadImage("Assets/pause.png");
+        Texture2D pause_texture = LoadTextureFromImage(pause);
+
+        Texture2D current_button = play_texture;
+
+        void Play();
         
         int WillBeAlive(pair<int, int> block);
 
@@ -69,5 +80,7 @@ class Game {
         void Update();
 
         void ConwayUpdate();
+
+        ~Game();
 };
 

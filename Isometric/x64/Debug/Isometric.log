@@ -40,8 +40,6 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.3443
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(263,54): warning C4244:         ]
   (compiling source file 'Source/ClassesAndFunctions.cpp')
   
-  Main.cpp
-  Generating Code...
   Isometric.vcxproj -> H:\AikenStuff\Programming\Isometric\x64\Debug\Isometric.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

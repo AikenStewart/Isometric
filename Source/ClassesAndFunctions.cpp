@@ -137,7 +137,7 @@ void World::Edit() {
     Vector2 screen_pos = GetMousePosition();
     pair<int, int> mouse_pos = ScreenToIso(pair<int, int>(screen_pos.x, screen_pos.y));
 
-    if (mouse_pos.first < gridsize + 1 && mouse_pos.second < gridsize + 1) {
+    if (mouse_pos.first < gridsize + 1 && mouse_pos.second < gridsize + 1 && !(screen_pos.x >= 1851 && screen_pos.y >= 984)) {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
             Place(mouse_pos);
         }
@@ -201,6 +201,21 @@ World::~World() {
 
 
 
+void Game::Play() {
+    Vector2 screen_pos = GetMousePosition();
+    if ((screen_pos.x >= 1851 && screen_pos.y >= 984 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) || IsKeyPressed(KEY_SPACE)) {
+        if(playing) {
+            playing = false;
+            current_button = play_texture;
+        }
+        else if (playing == false) {
+            playing = true;
+            current_button = pause_texture;
+        }
+    }
+
+    DrawTextureEx(current_button, Vector2{1851, 984}, 0, 2, WHITE);
+}
 
 int Game::WillBeAlive(pair<int, int> block) {
     int index = block.second * world.gridsize + block.first;
@@ -265,5 +280,13 @@ void Game::Update() {
 
 void Game::ConwayUpdate() {
     MakeNextBoard();
+}
+
+Game::~Game() {
+    UnloadImage(play);
+    UnloadTexture(play_texture);
+    UnloadImage(pause);
+    UnloadTexture(pause_texture);
+    UnloadTexture(current_button);
 }
 
