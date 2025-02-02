@@ -71,7 +71,21 @@ class Game {
 
         Texture2D current_button = play_texture;
 
+        Image highlight = LoadImage("Assets/highlight_button.png");
+        Texture2D highlight_texture = LoadTextureFromImage(highlight);
+
+        Image slider_rail = LoadImage("Assets/slider_rail.png");
+        Texture2D slider_rail_texture = LoadTextureFromImage(slider_rail);
+
+        Image slider = LoadImage("Assets/slider.png");
+        Texture2D slider_texture = LoadTextureFromImage(slider);
+
+        int slider_position = 0;
+        float delay = 0;
+
         void Play();
+
+        void Slider();
         
         int WillBeAlive(pair<int, int> block);
 

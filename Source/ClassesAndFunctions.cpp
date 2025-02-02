@@ -137,7 +137,7 @@ void World::Edit() {
     Vector2 screen_pos = GetMousePosition();
     pair<int, int> mouse_pos = ScreenToIso(pair<int, int>(screen_pos.x, screen_pos.y));
 
-    if (mouse_pos.first < gridsize + 1 && mouse_pos.second < gridsize + 1 && !(screen_pos.x >= 1851 && screen_pos.y >= 984)) {
+    if (mouse_pos.first < gridsize + 1 && mouse_pos.second < gridsize + 1 && !(screen_pos.x >= 1851 && screen_pos.y >= 984) && !(screen_pos.y >= 1000 && screen_pos.x < 300)) {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
             Place(mouse_pos);
         }
@@ -203,18 +203,46 @@ World::~World() {
 
 void Game::Play() {
     Vector2 screen_pos = GetMousePosition();
+    bool draw_highlight = false;
     if ((screen_pos.x >= 1851 && screen_pos.y >= 984 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) || IsKeyPressed(KEY_SPACE)) {
         if(playing) {
             playing = false;
             current_button = play_texture;
         }
+
         else if (playing == false) {
             playing = true;
             current_button = pause_texture;
         }
+
+        draw_highlight = true;
     }
 
     DrawTextureEx(current_button, Vector2{1851, 984}, 0, 2, WHITE);
+
+    if(draw_highlight)
+        DrawTextureEx(highlight_texture, Vector2{ 1851, 984 }, 0, 2, WHITE);
+}
+
+
+void Game::Slider() {
+    DrawTextureEx(slider_rail_texture, Vector2{5, 1080 - 96}, 0, 2, WHITE);
+    Vector2 screen_pos = GetMousePosition();
+
+    if (screen_pos.y >= 1000 && screen_pos.y <= 1032 && screen_pos.x >= (17 + slider_position) && screen_pos.x <= (29 + slider_position) && IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        slider_position = screen_pos.x - 23;
+    }
+    
+    if(slider_position > 218)
+        slider_position = 218;
+    if (slider_position < 0)
+        slider_position = 0;
+
+
+    DrawTextureEx(slider_texture, Vector2{float(17 + slider_position), 1000}, 0, 2, WHITE);
+
+    delay = 1 / (float(slider_position + 1) / float(218 / 30));
+
 }
 
 int Game::WillBeAlive(pair<int, int> block) {
@@ -274,7 +302,6 @@ void Game::MakeNextBoard() {
 
 void Game::Update() {
        world.Edit();
-       world.Cursor();
 }
 
 
@@ -288,5 +315,11 @@ Game::~Game() {
     UnloadImage(pause);
     UnloadTexture(pause_texture);
     UnloadTexture(current_button);
+    UnloadImage(highlight);
+    UnloadTexture(highlight_texture);
+    UnloadImage(slider_rail);
+    UnloadTexture(slider_rail_texture);
+    UnloadImage(slider);
+    UnloadTexture(slider_texture);
 }
 

@@ -31,7 +31,8 @@ int main() {
     while(WindowShouldClose() == false) {
 
         if(game.playing) {
-            game.ConwayUpdate();
+            if(EventTriggered(game.delay))
+                game.ConwayUpdate();
         }
         if (game.playing == 0) {
             game.Update();
@@ -43,7 +44,9 @@ int main() {
 
         BeginDrawing();
         game.world.Build();
+        game.world.Cursor();
         game.Play();
+        game.Slider();
 
         DrawText(pos_char, 1920-50, 5, 30, WHITE);
 
