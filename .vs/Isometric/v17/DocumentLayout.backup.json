@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "Source\\Main.cpp",
               "ToolTip": "H:\\AikenStuff\\Programming\\Isometric\\Source\\Main.cpp",
               "RelativeToolTip": "Source\\Main.cpp",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADYAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADEAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-25T11:24:07.628Z",
               "IsPinned": true,
@@ -49,8 +49,7 @@
               "ViewState": "AgIAACwBAAAAAAAAAAAAADYBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-25T12:02:12.626Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -62,8 +61,7 @@
               "RelativeToolTip": "Source\\ClassesAndFunctions.hpp",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAAoAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-25T13:21:32.092Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T13:21:32.092Z"
             }
           ]
         }

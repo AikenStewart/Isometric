@@ -43,6 +43,7 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.3443
   
   Main.cpp
   Generating Code...
+  LINK : H:\AikenStuff\Programming\Isometric\x64\Debug\Isometric.exe not found or not built by the last incremental link; performing full link
   Isometric.vcxproj -> H:\AikenStuff\Programming\Isometric\x64\Debug\Isometric.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
