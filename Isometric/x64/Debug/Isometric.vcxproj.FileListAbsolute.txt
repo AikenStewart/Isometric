@@ -1,3 +1,6 @@
 H:\AikenStuff\Programming\Isometric\x64\Debug\raylib.dll
 H:\AikenStuff\Programming\Isometric\x64\Debug\glfw3.dll
 H:\AikenStuff\Programming\Isometric\Isometric\x64\Debug\Isometric.vcxproj.Up2Date
+C:\Users\aiken\Documents\GitHub\Isometric\x64\Debug\raylib.dll
+C:\Users\aiken\Documents\GitHub\Isometric\x64\Debug\glfw3.dll
+C:\Users\aiken\Documents\GitHub\Isometric\Isometric\x64\Debug\Isometric.vcxproj.Up2Date
