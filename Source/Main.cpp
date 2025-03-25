@@ -42,6 +42,9 @@ int main() {
         string pos_string = to_string(GetFPS());
         char* pos_char = (char*)pos_string.c_str();
 
+        string gen_string = to_string(game.world.gen_number);
+        char* gen_char = (char*)gen_string.c_str();
+
         BeginDrawing();
         game.world.Build();
         game.world.Cursor();
@@ -49,6 +52,7 @@ int main() {
         game.Slider();
 
         DrawText(pos_char, 1920-50, 5, 30, WHITE);
+        DrawText(gen_char, 960, 5, 30, WHITE);
 
         ClearBackground(Color{0, 0, 0});
         EndDrawing();

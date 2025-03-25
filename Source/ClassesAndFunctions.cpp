@@ -307,6 +307,7 @@ void Game::Update() {
 
 void Game::ConwayUpdate() {
     MakeNextBoard();
+    world.gen_number++;
 }
 
 Game::~Game() {

@@ -37,7 +37,10 @@ public:
 
     Image invalid_cursor = LoadImage("Assets/invalid_cursor.png");
     Texture2D invalid_cursor_texture = LoadTextureFromImage(invalid_cursor);
+
     double texture_size = 0.25;
+
+    int gen_number = 0;
 
     void ChangeSize();
 
